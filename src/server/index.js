@@ -1,5 +1,7 @@
 const Express = require('express');
 const logger = require('morgan');
+const React = require('react');
+const ReactDOM = require('react-dom/server');
 // const runnerRoutes = require('./routes/runner-routes');
 const wifiRoutes = require('./routes/wifi-routes');
 const resetButton = require('./robotois-reset');
