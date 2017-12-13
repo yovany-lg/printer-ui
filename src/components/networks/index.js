@@ -1,17 +1,17 @@
 import React from 'react';
 import AvailableWifis from './available-wifis';
 import WifiModal from './wifi-modal';
-// import { createAP, shutdown } from '../../../actions/kit-config/kit-config';
+import { createAP, shutdown } from '../../actions/networks-actions';
 
-const Header = ({ ip, hostname, isFetching, handleCreateAP, handleShutdown, handleFetchWifis }) => (
+const Header = ({ isFetching, handleCreateAP, handleShutdown, handleFetchWifis }) => (
   <div className="tile">
     <div className="tile-content">
-      <p className="tile-title h5">Configuración del Kit</p>
+      <p className="tile-title h5">Configuración de la impresora</p>
     </div>
     <div className="tile-action">
       <button className={`btn btn-primary m-1 ${isFetching ? 'loading' : ''}`} onClick={handleFetchWifis}>Buscar Redes WiFi</button>
       <button className="btn btn-primary m-1" onClick={handleCreateAP}>Crear Access Point</button>
-      <button className="btn btn-link label label-warning m-1" onClick={handleShutdown}>apagar</button>
+      <button className="btn btn-link label label-warning m-1" onClick={handleShutdown}>Apagar</button>
     </div>
   </div>
 );
@@ -30,23 +30,23 @@ class App extends React.Component {
   }
 
   handleFetchWifis() {
-    const { fetchWifis, selectedKit: { ip } } = this.props;
-    fetchWifis(ip);
+    const { fetchWifis, hostIp } = this.props;
+    fetchWifis(hostIp);
   }
 
   handleConnect() {
-    const { selectedWifi, connectWifi, selectedKit: { ip } } = this.props;
-    connectWifi(ip, selectedWifi);
+    const { selectedWifi, connectWifi, hostIp } = this.props;
+    connectWifi(hostIp, selectedWifi);
   }
 
   handleCreateAP() {
-    const { selectedKit: { ip } } = this.props;
-    createAP(ip);
+    const { hostIp } = this.props;
+    createAP(hostIp);
   }
 
   handleShutdown() {
-    const { selectedKit: { ip } } = this.props;
-    shutdown(ip);
+    const { hostIp } = this.props;
+    shutdown(hostIp);
   }
 
   render() {
@@ -63,8 +63,6 @@ class App extends React.Component {
     return (
       <div className="col-9 my-2 centered">
         <Header
-          ip={selectedKit.ip}
-          hostname={selectedKit.hostname}
           isFetching={isFetching}
           handleFetchWifis={this.handleFetchWifis}
           handleCreateAP={this.handleCreateAP}

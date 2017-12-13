@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Layout from './layout';
+import NetworksContainer from '../containers/networks-container';
 // import logo from './logo.svg';
 // import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <Layout />
-    );
-  }
-}
+const App = () => (
+  <Layout >
+    <NetworksContainer />
+  </Layout>
+);
 
 export default App;

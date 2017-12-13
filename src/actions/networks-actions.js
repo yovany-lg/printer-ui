@@ -4,6 +4,7 @@ export const WIFI_CONFIG_REQUEST_AVAILABLE = 'WIFI_CONFIG_REQUEST_AVAILABLE';
 export const WIFI_CONFIG_RECEIVE_AVAILABLE = 'WIFI_CONFIG_RECEIVE_AVAILABLE';
 export const WIFI_CONFIG_SELECTED_WIFI = 'WIFI_CONFIG_SELECTED_WIFI';
 export const WIFI_CONFIG_RESET_WIFI = 'WIFI_CONFIG_RESET_WIFI';
+export const devHost = '192.168.1.70';
 
 const requestAvailableWifis = () => ({
   type: WIFI_CONFIG_REQUEST_AVAILABLE,
@@ -49,6 +50,30 @@ export const connectWifi = (hostIp, wifi) => dispatch =>
     .then((response) => {
       console.log(response);
       dispatch(resetWifi());
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+export const createAP = hostIp =>
+  axios({
+    method: 'get',
+    url: `http://${hostIp}:8082/wifi/start-ap`,
+  })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+export const shutdown = hostIp =>
+  axios({
+    method: 'get',
+    url: `http://${hostIp}:8082/shutdown`,
+  })
+    .then((response) => {
+      console.log(response);
     })
     .catch((error) => {
       console.log(error);
