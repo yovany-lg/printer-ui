@@ -4,19 +4,26 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "morgan": "^1.9.0",
+    "onoff": "^1.1.8",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "spectre.css": "^0.5.0"
+    "spectre.css": "^0.5.0",
+    "wifi-config": "^1.0.1",
+    "wireless-tools": "^0.19.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-server": "sudo node ./src/server"
   },
   "devDependencies": {
     "eslint": "^4.13.1",

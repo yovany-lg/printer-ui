@@ -1,25 +1,25 @@
 const Express = require('express');
 const logger = require('morgan');
-const runnerRoutes = require('./routes/runner-routes');
+// const runnerRoutes = require('./routes/runner-routes');
 const wifiRoutes = require('./routes/wifi-routes');
-// const resetButton = require('../robotois-reset');
-// const command = require('../robotois-reset/commands');
+const resetButton = require('./robotois-reset');
+const command = require('./robotois-reset/commands');
 
-// resetButton.init();
+resetButton.init();
 
 const app = new Express();
 
 app.use(logger('tiny'));
 app.use('/wifi', wifiRoutes);
-app.use('/runner', runnerRoutes);
+// app.use('/runner', runnerRoutes);
 
-// app.get('/shutdown', (req, res) => {
-//   console.log('---> Robotois system going to shutdown...');
-//   command('sudo shutdown -h now');
-//   res.status(200).json({
-//     ok: 'ok',
-//   });
-// });
+app.get('/shutdown', (req, res) => {
+  console.log('---> Robotois system going to shutdown...');
+  command('sudo shutdown -h now');
+  res.status(200).json({
+    ok: 'ok',
+  });
+});
 
 // listen
 app.listen(8082);

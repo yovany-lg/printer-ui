@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const os = require('os');
 const { connectWifi, startAP } = require('wifi-config');
 const iwlist = require('wireless-tools/iwlist');
-const command = require('../../robotois-reset/commands');
+const command = require('../robotois-reset/commands');
 
 const router = express.Router();
 
@@ -25,7 +25,7 @@ router.get('/all', (req, res) => {
       });
       return;
     }
-    // console.log('iwlist all:', networks);
+    console.log('iwlist all:', networks);
     res.status(200).json({
       networks,
     });
