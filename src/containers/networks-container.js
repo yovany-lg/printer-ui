@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import Networks from '../components/networks';
-import { fetchAvailableWifis, selectWifi, connectWifi, resetWifi } from '../actions/networks-actions';
+import { fetchAvailableWifis, selectWifi, connectWifi, resetWifi, devHost } from '../actions/networks-actions';
 
-const mapStateToProps = ({ kitConfig: { wifiConfig, selectedKit } }) => ({
-  ...wifiConfig,
-  selectedKit,
+const mapStateToProps = ({ networks }) => ({
+  ...networks,
+  hostIp: devHost,
 });
 
 const mapDispatchToProps = dispatch => ({
