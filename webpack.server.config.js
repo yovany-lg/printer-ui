@@ -1,0 +1,22 @@
+const nodeExternals = require('webpack-node-externals');
+const path = require('path');
+
+module.exports = {
+  entry: './src/server/index.js',
+  devtool: 'inline-source-map',
+  output: {
+    filename: 'server.bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+      },
+    ],
+  },
+  target: 'node',
+  externals: [nodeExternals()],
+};

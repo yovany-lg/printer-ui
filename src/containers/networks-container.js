@@ -4,7 +4,8 @@ import { fetchAvailableWifis, selectWifi, connectWifi, resetWifi, devHost } from
 
 const mapStateToProps = ({ networks }) => ({
   ...networks,
-  hostIp: devHost,
+  // hostIp: devHost,
+  hostIp: window.location.hostname,
 });
 
 const mapDispatchToProps = dispatch => ({

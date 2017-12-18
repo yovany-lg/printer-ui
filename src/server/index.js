@@ -1,8 +1,12 @@
 const Express = require('express');
 const logger = require('morgan');
-const React = require('react');
-const ReactDOM = require('react-dom/server');
-// const runnerRoutes = require('./routes/runner-routes');
+const path = require('path');
+// const React = require('react');
+
+// const App = require('../components/App');
+// const reducers = require('../reducers');
+// const renderFullPage = require('./template');
+
 const wifiRoutes = require('./routes/wifi-routes');
 const resetButton = require('./robotois-reset');
 const command = require('./robotois-reset/commands');
@@ -11,9 +15,24 @@ resetButton.init();
 
 const app = new Express();
 
+app.use(Express.static('build'));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+  // const store = createStore(reducers);
+  //
+  // const markup = renderToString(
+  //   <Provider store={store}>
+  //     <App />
+  //   </Provider>
+  // );
+  //
+  // const preloadedState = store.getState();
+  //
+  // res.send(renderFullPage(markup, preloadedState));
+});
+
 app.use(logger('tiny'));
 app.use('/wifi', wifiRoutes);
-// app.use('/runner', runnerRoutes);
 
 app.get('/shutdown', (req, res) => {
   console.log('---> Robotois system going to shutdown...');
@@ -26,44 +45,3 @@ app.get('/shutdown', (req, res) => {
 // listen
 app.listen(8082);
 console.log('listening on port 8082');
-
-// const mosca = require('mosca');
-// const redis = require('redis');
-//
-// const ascoltatore = {
-//   type: 'redis',
-//   redis,
-//   db: 12,
-//   port: 6379,
-//   return_buffers: true, // to handle binary payloads
-//   host: 'localhost',
-// };
-//
-// const moscaSettings = {
-//   port: 1883,
-//   http: {
-//     port: 1884,
-//     bundle: true,
-//     static: './',
-//   },
-//   backend: ascoltatore,
-//   persistence: {
-//     factory: mosca.persistence.Redis,
-//   },
-// };
-//
-// const setup = () => {
-//   console.log('Mosca server is up and running');
-// };
-//
-// const server = new mosca.Server(moscaSettings);
-// server.on('ready', setup);
-//
-// server.on('clientConnected', (client) => {
-//   console.log('client connected', client.id);
-// });
-//
-// // fired when a message is received
-// server.on('published', (packet, client) => {
-//   console.log('Published', packet.topic, packet.payload.toString());
-// });

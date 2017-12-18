@@ -14,6 +14,7 @@
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
+    "robotois-button": "^1.0.7",
     "spectre.css": "^0.5.0",
     "wifi-config": "^1.0.1",
     "wireless-tools": "^0.19.0"
@@ -23,13 +24,19 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "start-server": "sudo node ./src/server"
+    "start-server": "sudo node ./src/server/index.js",
+    "build-server": "node_modules/.bin/webpack --config webpack.server.config.js"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
     "eslint": "^4.13.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.5.1",
+    "webpack": "^3.10.0",
+    "webpack-node-externals": "^1.6.0"
   }
 }
