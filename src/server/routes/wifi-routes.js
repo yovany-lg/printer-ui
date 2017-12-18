@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const os = require('os');
 const { connectWifi, startAP } = require('wifi-config');
 const iwlist = require('wireless-tools/iwlist');
-const command = require('../robotois-reset/commands');
+// const command = require('../robotois-reset/commands');
 
 const router = express.Router();
 
@@ -25,7 +25,7 @@ router.get('/all', (req, res) => {
       });
       return;
     }
-    console.log('iwlist all:', networks);
+    // console.log('iwlist all:', networks);
     res.status(200).json({
       networks,
     });
@@ -35,14 +35,14 @@ router.get('/all', (req, res) => {
 router.post('/connect', (req, res) => {
   // const { id } = req.params;
   const { ssid, pwd } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   connectWifi(ssid, pwd);
   res.status(200).json({
     ok: true,
   });
-  setTimeout(() => {
-    command('sudo shutdown -r now');
-  }, 500);
+  // setTimeout(() => {
+  //   command('sudo shutdown -r now');
+  // }, 500);
 });
 
 router.get('/hostname', (req, res) => {

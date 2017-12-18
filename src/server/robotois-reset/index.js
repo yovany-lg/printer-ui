@@ -1,4 +1,4 @@
-const { Gpio } = require('onoff');
+// const { Gpio } = require('onoff');
 const wifiConfig = require('wifi-config');
 const command = require('./commands');
 const Button = require('robotois-button');
@@ -28,14 +28,15 @@ const resetFunction = (seconds, ms) => {
 const onChange = (value) => {
   if (value === 0) { // Inverted
     hrstart = process.hrtime();
-  } else {
-    if (hrstart !== undefined) {
-      hrend = process.hrtime(hrstart);
-      resetFunction(hrend[0], hrend[1]);
-      hrstart = undefined;
-      hrend = undefined;
-      // console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
-    }
+    return;
+  }
+
+  if (hrstart !== undefined) {
+    hrend = process.hrtime(hrstart);
+    resetFunction(hrend[0], hrend[1]);
+    hrstart = undefined;
+    hrend = undefined;
+    // console.info('Execution time (hr): %ds %dms', hrend[0], hrend[1] / 1000000);
   }
 };
 
