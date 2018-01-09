@@ -10,7 +10,6 @@ const Header = ({ isFetching, handleCreateAP, handleShutdown, handleFetchWifis }
     </div>
     <div className="tile-action">
       <button className={`btn btn-primary m-1 ${isFetching ? 'loading' : ''}`} onClick={handleFetchWifis}>Buscar Redes WiFi</button>
-      <button className="btn btn-primary m-1" onClick={handleCreateAP}>Crear Access Point</button>
       <button className="btn btn-link label label-warning m-1" onClick={handleShutdown}>Apagar</button>
     </div>
   </div>

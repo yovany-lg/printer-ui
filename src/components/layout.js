@@ -3,7 +3,7 @@ import React from 'react';
 const Menu = () => (
   <header className="navbar col-9 centered my-2">
     <section className="navbar-section">
-      <a href="#" className="navbar-brand mr-2">Impresora POSOCTO</a>
+      <a href="#" className="navbar-brand mr-2">Impresora POSOPTO</a>
     </section>
   </header>
 );

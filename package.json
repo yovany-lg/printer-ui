@@ -8,6 +8,7 @@
     "express": "^4.16.2",
     "morgan": "^1.9.0",
     "onoff": "^1.1.8",
+    "python-shell": "^0.4.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
@@ -16,7 +17,6 @@
     "redux-thunk": "^2.2.0",
     "robotois-button": "^1.0.7",
     "spectre.css": "^0.5.0",
-    "wifi-config": "^1.0.1",
     "wireless-tools": "^0.19.0"
   },
   "scripts": {
