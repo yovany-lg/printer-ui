@@ -54,7 +54,7 @@ router.get('/hostname', (req, res) => {
 
 router.get('/start-ap', (req, res) => {
   ledColor('off', () => {
-    startAP();
+    startAP('ImpresoraPosopto', '12345678');
   });
 
   res.status(200).json({
