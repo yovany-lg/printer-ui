@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const os = require('os');
-const { connectWifi, startAP } = require('../../wifi-config');
+const { connectWifi } = require('../../../../wifi-config');
 const iwlist = require('wireless-tools/iwlist');
-const ledColor = require('../ws2812/led');
-// const command = require('../robotois-reset/commands');
+
+const command = require('../robotois-reset/commands');
 
 const router = express.Router();
 
@@ -35,10 +35,10 @@ router.get('/all', (req, res) => {
 
 router.post('/connect', (req, res) => {
   const { ssid, pwd } = req.body;
+  command('sudo systemctl disable printerui');
+  command('sudo systemctl enable iotprinter');
 
-  ledColor('off', () => {
-    connectWifi(ssid, pwd);
-  });
+  connectWifi(ssid, pwd);
 
   res.status(200).json({
     ok: true,
@@ -52,14 +52,12 @@ router.get('/hostname', (req, res) => {
   });
 });
 
-router.get('/start-ap', (req, res) => {
-  ledColor('off', () => {
-    startAP('ImpresoraPosopto', '12345678');
-  });
-
-  res.status(200).json({
-    ok: 'ok',
-  });
-});
+// router.get('/start-ap', (req, res) => {
+//   startAP('ImpresoraPosopto', '12345678');
+//
+//   res.status(200).json({
+//     ok: 'ok',
+//   });
+// });
 
 module.exports = router;

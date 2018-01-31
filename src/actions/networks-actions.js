@@ -19,7 +19,7 @@ export const fetchAvailableWifis = hostIp => (dispatch) => {
   dispatch(requestAvailableWifis());
   return axios({
     method: 'get',
-    url: `http://${hostIp}:8082/wifi/all`,
+    url: `http://${hostIp}/wifi/all`,
   })
     .then((res) => {
       const { data: { networks } } = res;
@@ -43,8 +43,8 @@ export const resetWifi = () => ({
 export const connectWifi = (hostIp, wifi) => dispatch =>
   axios({
     method: 'post',
-    // baseURL: 'http://192.168.1.75:8082',
-    url: `http://${hostIp}:8082/wifi/connect`,
+    // baseURL: 'http://192.168.1.75',
+    url: `http://${hostIp}/wifi/connect`,
     data: { ...wifi },
   })
     .then((response) => {
@@ -58,7 +58,7 @@ export const connectWifi = (hostIp, wifi) => dispatch =>
 export const createAP = hostIp =>
   axios({
     method: 'get',
-    url: `http://${hostIp}:8082/wifi/start-ap`,
+    url: `http://${hostIp}/wifi/start-ap`,
   })
     .then((response) => {
       console.log(response);
@@ -70,7 +70,7 @@ export const createAP = hostIp =>
 export const shutdown = hostIp =>
   axios({
     method: 'get',
-    url: `http://${hostIp}:8082/shutdown`,
+    url: `http://${hostIp}/shutdown`,
   })
     .then((response) => {
       console.log(response);
